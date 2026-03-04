@@ -137,7 +137,7 @@ dataset = project.versions(1).download("yolov8")
 | 0.50 | 0.87 | 0.88 | Balanced |
 | 0.75 | 0.95 | 0.72 | High specificity (minimize false alarms) |
 
-Rationale: In clinical blood analysis, Mmissing cells (false negatives) is more dangerous than false positives, since pathologists can rapidly dismiss low-confidence detections but cannot catch missed abnormalities. Threshold 0.2 is recommended.
+Rationale: In clinical blood analysis, Missing cells (false negatives) is more dangerous than false positives, since pathologists can rapidly dismiss low-confidence detections but cannot catch missed abnormalities. Threshold 0.2 is recommended.
 
 ---
 
@@ -170,29 +170,16 @@ Rationale: In clinical blood analysis, Mmissing cells (false negatives) is more 
 ## Project Structure
 
 ```
-MP7_BloodCellDetection/
-├── MP7_Yu_Tan.ipynb                      # Main Jupyter notebook (all analysis)
-├── requirements.txt                       # Python dependencies (pip install)
-├── README.md                              # This file
-├── MP7_Report_BloodCellDetection.pdf      # Complete technical report
-├── main.tex                               # LaTeX source for report
-├── figs/                                  # Generated visualizations
-│   ├── class_distribution.png
-│   ├── training_curves.png
-│   ├── per_class_performance.png
-│   ├── confidence_threshold_comparison.png
-│   ├── predictions_validation.png
-│   └── hyperparameter_comparison.png
-└── BCCD-1/                                # Dataset (auto-downloaded by notebook)
-    ├── data.yaml                          # YOLO format configuration
-    ├── train/
-    │   ├── images/                        # 765 training images
-    │   └── labels/                        # YOLO annotations
-    ├── valid/
-    │   ├── images/                        # 73 validation images
-    │   └── labels/
-    └── test/
-        ├── images/                        # 36 test images
-        └── labels/
+mini-project-7/
+├── data/                                  
+│   └── DATA_INSTRUCTIONS.txt                             # Instructions for retrieving the dataset
+├── doc/                                                  # Generated visualizations
+│   └── MP7_Yu_Tan.pdf                                    # PDF version of the main Jupyter notebook
+├── figures/                                              # Figures generated from the notebooks
+├── notebooks
+│   ├── MP7_Yu_Tan.ipynb                                  # Main Jupyter notebook
+│   └── MP7_Yu_Tan(False_Negative_Visualizations).ipynb   # Re-run of Main Jupyter notebook but with false negative visualizations
+├── requirements.txt                                      # Python dependencies (pip install)
+└── README.md                                             # This file
 ```
 
