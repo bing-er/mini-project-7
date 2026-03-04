@@ -11,3 +11,12 @@ pillow>=9.0.0
 # TensorFlow/Keras - SEE INSTALLATION INSTRUCTIONS BELOW
 # DO NOT install from this file directly
 # keras>=2.13.0
+
+torch>=2.0.0
+torchvision>=0.15.0
+opencv-python>=4.5.0
+scipy>=1.7.0
+ultralytics>=8.0.0
+notebook>=6.4.0
+pyyaml>=5.4.0
+requests>=2.25.0
