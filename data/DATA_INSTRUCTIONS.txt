@@ -1,95 +1,38 @@
-================================================================
-DATA SETUP INSTRUCTIONS
-Mini Project 7 — Transfer Learning (COMP 9130)
-Oxford 102 Flower Dataset
-================================================================
+# Data Instructions
 
-The dataset files are NOT included in this repository (too large for GitHub).
-Follow the steps below to download and set up the data correctly.
+The dataset is NOT included in this repository due to file size constraints.
 
-----------------------------------------------------------------
-STEP 1: DOWNLOAD THE DATASET
-----------------------------------------------------------------
+## Dataset: BCCD (Blood Cell Count and Detection)
+- Source: Roboflow Universe
+- URL: https://universe.roboflow.com/roboflow-100/bccd
+- Classes: RBC, WBC, Platelet
+- Size: ~360 images with bounding box annotations
+- Format: YOLOv8
 
-Option A — Kaggle Website (Manual):
-  1. Go to: https://www.kaggle.com/datasets/nunenuh/pytorch-challange-flower-dataset
-  2. Click "Download" (requires a free Kaggle account)
-  3. Save the ZIP file into this /data folder
+## How to Download
 
-Option B — Kaggle API (Recommended):
-  1. Install the Kaggle CLI:
-       pip install kaggle
-  2. Get your API key:
-       - Go to https://www.kaggle.com/account
-       - Click "Create New API Token"
-       - This downloads kaggle.json
-       - Place kaggle.json in:
-           Windows:  C:\Users\<your-username>\.kaggle\
-           Mac/Linux: ~/.kaggle/
-  3. Run this command from the /data folder:
-       kaggle datasets download -d nunenuh/pytorch-challange-flower-dataset
-  4. Unzip the downloaded file:
-       unzip pytorch-challange-flower-dataset.zip
+1. Sign up for a free account at https://app.roboflow.com
+2. Go to Settings → API Keys and copy your API key
+3. Run the following in the notebook (Section 2):
 
-----------------------------------------------------------------
-STEP 2: EXPECTED FOLDER STRUCTURE
-----------------------------------------------------------------
+    from roboflow import Roboflow
+    rf = Roboflow(api_key="YOUR_API_KEY")
+    project = rf.workspace("roboflow-100").project("bccd")
+    version = project.version(1)
+    dataset = version.download("yolov8")
 
-After unzipping, your /data folder should look like this:
+4. Set DATASET_DIR = dataset.location in the notebook.
 
-  data/
-  ├── DATA_INSTRUCTIONS.txt        ← this file
-  ├── train/
-  │   ├── 1/                       ← class 1 (e.g., pink primrose)
-  │   │   ├── image_00001.jpg
-  │   │   ├── image_00002.jpg
-  │   │   └── ...
-  │   ├── 2/
-  │   └── ... (102 class folders)
-  ├── valid/
-  │   ├── 1/
-  │   └── ... (102 class folders)
-  └── test/
-      ├── 1/
-      └── ... (102 class folders)
+## Expected Folder Structure After Download
 
-NOTE: If the unzipped structure is different (e.g., all images in one folder),
-check notebook 01_data_preparation.ipynb — the loading code handles re-splitting.
-
-----------------------------------------------------------------
-STEP 3: VERIFY THE SETUP
-----------------------------------------------------------------
-
-Run the first cell in 01_data_preparation.ipynb.
-It will check that the folders exist and print the image counts:
-
-  Expected totals (approximate):
-  - Total images:     ~8,189
-  - Classes:          102
-  - Train set:        ~5,732  (70%)
-  - Validation set:   ~1,228  (15%)
-  - Test set:         ~1,229  (15%)
-
-If you see errors about missing folders, double-check Step 2.
-
-----------------------------------------------------------------
-DATASET DETAILS
-----------------------------------------------------------------
-
-  Name:       Oxford 102 Flower Dataset
-  Source:     https://www.kaggle.com/datasets/nunenuh/pytorch-challange-flower-dataset
-  Original:   https://www.robots.ox.ac.uk/~vgg/data/flowers/102/
-  Authors:    Nilsback, M-E. and Zisserman, A. (University of Oxford, 2008)
-  Classes:    102 flower species (commonly occurring in the United Kingdom)
-  Images:     ~8,189 total | 40–258 images per class
-  License:    For academic/research use — see original dataset page for details
-
-----------------------------------------------------------------
-GITIGNORE NOTE
-----------------------------------------------------------------
-
-All image files in this folder are excluded from version control via .gitignore.
-Only this DATA_INSTRUCTIONS.txt file is tracked by Git.
-Do NOT commit the image files — the dataset is too large (~600MB) for GitHub.
-
-================================================================
+BCCD-1/
+    data.yaml
+    train/
+        images/
+        labels/
+    valid/
+        images/
+        labels/
+    test/
+        images/
+        labels/
